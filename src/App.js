@@ -25,7 +25,7 @@ class App extends Component {
     return {
       id: `thing-${Date.now()}`,
       name: '',
-      checkbox: 'on',
+      checkbox: ['on','off']
     }
   }
 
@@ -48,10 +48,9 @@ class App extends Component {
     this.setState({ things })
   }
 
-  checkThing = () => {
+  checkThing = (thing) => {
     const things = {...this.state.things}
-    const thing = this.thing()
-    // things[thing.checkbox] = !checkbox
+    things[thing.checkbox] = !thing
     this.setState({ things })
   }
 
@@ -59,6 +58,7 @@ class App extends Component {
     const actions = {
       saveThing: this.saveThing,
       removeThing: this.removeThing,
+      checkThing: this.checkThing
     }
 
     return (
