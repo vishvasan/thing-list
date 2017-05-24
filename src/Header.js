@@ -6,6 +6,7 @@ const Header = () => {
     <header>
       <h1>ThingList</h1>
       <h2>So Many Things</h2>
+      
     </header>
   )
 }
