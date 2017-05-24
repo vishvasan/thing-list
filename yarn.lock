@@ -2455,9 +2455,9 @@ find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase@^3.5.2:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/firebase/-/firebase-3.9.0.tgz#c4237f50f58eeb25081b1839d6cbf175f8f7ed9b"
+firebase@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/firebase/-/firebase-4.0.0.tgz#a128092910e44224babc33e19b562ae3716ec4d5"
   dependencies:
     dom-storage "^2.0.2"
     faye-websocket "0.9.3"
@@ -4842,11 +4842,11 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re-base@^2.7.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/re-base/-/re-base-2.8.0.tgz#f911a431b997bfaefd55fcfa012ba948eff20884"
+re-base@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/re-base/-/re-base-3.0.1.tgz#36fd3ea1e15d65ccdccae1706b64237741f2c94b"
   dependencies:
-    firebase "^3.5.2"
+    firebase "^4.0.0"
 
 react-contenteditable@^2.0.2:
   version "2.0.2"

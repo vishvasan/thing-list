@@ -1,15 +1,12 @@
-Day 6 Homework
+Day 7 Homework
 
-Add the "Add Thing" button, including the corresponding CSS.
+When the checkbox is checked, mark the corresponding Thing as completed.
+Be sure this gets synced to Firebase and persists across page refreshes.
 
-Bonus Credit
-
-Make that button work!
 
 Super Mega Bonus Credit
 
-Stop hard-coding things altogether. Use only the things that were added via the "Add Thing" button.
+Add a due date to each thing.
+Make sure it persists
 
-Super Mega Bonus Credit Hyper Fighting
-
-Make the "remove" button work.
+Hint: HTML 5 includes an input type date, i.e. &lt;input type="date" /&gt;
