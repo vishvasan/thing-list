@@ -16,24 +16,32 @@ class App extends Component {
   thing() {
     return {
       id: `thing-${Date.now()}`,
-    name: '',
+      name: '',
     }
   }
 
-addThing = () => {
-  const things = {...this.state.things}
-  const thing = this.thing()
-  things[thing.id] = thing
-  this.setState({ things })
-}
+  addThing = () => {
+    const things = {...this.state.things}
+    const thing = this.thing()
+    things[thing.id] = thing
+    this.setState({ things })
+  }
 
+  saveThing = (thing) => {
+    const things = {...this.state.things}
+    things[thing.id] = thing
+    this.setState({ things })
+  }
 
   render() {
     return (
       <div className="App">
         <Header />
         <AddThing addThing={this.addThing} />
-        <ThingList things={this.state.things} />
+        <ThingList
+          things={this.state.things}
+          saveThing={this.saveThing}
+        />
       </div>
     );
   }

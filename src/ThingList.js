@@ -3,7 +3,7 @@ import './ThingList.css'
 import Thing from './Thing'
 
 const ThingList = (props) => {
-  const sortThings = (a,b) => {
+  const sortThings = (a, b) => {
     return b.match(/\d+/)[0] - a.match(/\d+/)[0]
   }
 
@@ -12,8 +12,12 @@ const ThingList = (props) => {
       {
         Object
           .keys(props.things)
-          .sort()
-          .map(thingId => <Thing thing={props.things[thingId]} key={thingId} />)
+          .sort(sortThings)
+          .map(thingId => <Thing
+                            {...props}
+                            thing={props.things[thingId]}
+                            key={thingId}
+                          />)
       }
     </ul>
   )
