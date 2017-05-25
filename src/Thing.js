@@ -7,19 +7,20 @@ import Actions from './Actions'
 class Thing extends Component {
   componentDidMount() {
     if (!this.nameInput.htmlEl.textContent) {
-    this.nameInput.htmlEl.focus()
+      this.nameInput.htmlEl.focus()
     }
   }
 
-  checkName = (ev) => {
-    const { thing, checkThing, saveThing } = this.props
-    thing.checkbox = ev.target.value
+  handleChanges = (ev) => {
+    const { thing, saveThing } = this.props
+    const field = ev.currentTarget.getAttribute('name')
+    thing[field] = ev.target.value
     saveThing(thing)
   }
 
-  updateName = (ev) => {
+  toggleCompletion = (ev) => {
     const { thing, saveThing } = this.props
-    thing.name = ev.target.value
+    thing.completed = ev.target.checked
     saveThing(thing)
   }
 
@@ -35,15 +36,24 @@ class Thing extends Component {
 
     return (
       <li className="Thing">
-        <input type="checkbox" value="on" onClick={this.checkName} />
+        <input
+          type="checkbox"
+          defaultChecked={thing.completed}
+          onChange={this.toggleCompletion}
+        />
         <div className="details">
           <ContentEditable
             className="name"
             html={thing.name}
-            onChange={this.updateName}
+            onChange={this.handleChanges}
             onKeyPress={this.blurOnEnter}
             ref={input => this.nameInput = input}
           />
+          <input 
+          type="date"
+          name="dueOn"
+          defaultValue={thing.dueOn}
+          onChange={this.handleChanges} />
           <Actions thing={thing} removeThing={removeThing} />
         </div>
       </li>
