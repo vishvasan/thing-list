@@ -6,12 +6,27 @@ import ThingList from './ThingList'
 import AddThing from './AddThing'
 import SignIn from './SignIn'
 import SignOut from './SignOut'
-import base,{ auth } from './base'
+import base, { auth } from './base'
 
 class App extends Component {
+  state = {
+    things: {},
+    uid: null
+  }
+
   componentWillMount() {
+    auth.onAuthStateChanged(
+      (user) => {
+        if (user) {
+          this.authHandler({ user })
+        }
+      }
+    )
+  }
+
+  setupThings = () => {
     this.ref = base.syncState(
-      'things',
+      `${this.state.uid}/things`,
       {
         context: this,
         state: 'things'
@@ -19,8 +34,11 @@ class App extends Component {
     )
   }
 
-  state = {
-    things: {}
+  authHandler = (authData) => {
+    this.setState(
+      { uid: authData.user.uid },
+      this.setupThings
+    )
   }
 
   thing() {
@@ -52,25 +70,35 @@ class App extends Component {
   }
 
   signOut = () => {
-    auth.signOut()
+    auth
+      .signOut()
+      .then(() => this.setState({ uid: null }))
   }
 
-  render() {
+  renderThings() {
     const actions = {
       saveThing: this.saveThing,
       removeThing: this.removeThing,
     }
 
     return (
-      <div className="App">
-        <Header />
-        <SignIn />
+      <div>
         <SignOut signOut={this.signOut} />
         <AddThing addThing={this.addThing} />
         <ThingList
           things={this.state.things}
           {...actions}
         />
+      </div>
+    )
+  }
+
+  render() {
+
+    return (
+      <div className="App">
+        <Header />
+        { this.state.uid ? this.renderThings() : <SignIn authHandler={this.authHandler} /> }
       </div>
     );
   }
